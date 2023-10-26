@@ -95,7 +95,7 @@ const saveJson = async (path, data) =>{
 module.exports = ProductManager;
 
 // async function test(){
-//     const productManager = new ProductManager('Products.json');
+//     const productManager = new ProductManager('./Products.json');
 //     const data = {
 //         title: 'producto prueba',
 //         description: 'Este es un producto prueba',
@@ -133,13 +133,7 @@ module.exports = ProductManager;
     
 //     await productManager.addProduc(data);
 //     console.log(await productManager.getProducts());
-//     await productManager.getProductsById(1);
-//     await productManager.updateProducts(1 , {title: 'producto 1', description:'producto modificado 1'});
-//     console.log(await productManager.getProducts());
-//     await productManager.deleteProduct(1);
-//     console.log(await productManager.getProducts());
-//     await productManager.addProduc(data);
-//     console.log(await productManager.getProducts());
+   
 //     await productManager.addProduc(data2);
 //     await productManager.addProduc(data3);
 //     await productManager.addProduc(data4);
@@ -147,4 +141,3 @@ module.exports = ProductManager;
 
 // }
 // test();
-

@@ -1,36 +1,15 @@
 const express = require('express');
-const ProductManager = require('./ProductManager');
-
-const productManager = new ProductManager('./Products.json');
+const produtsRouter = require('./routers/products.router');
+const indexRouter = require('./routers/index.router');
 
 const app = express();
+const PORT = 8080;
+app.use(express.json());
 app.use(express.urlencoded( {extended: true}));
-app.get('/products', async (req, res) => {
-    const limit = parseInt(req.query.limit);
-    const product = await productManager.getProducts();
 
-    if(!isNaN(limit) && limit > 0){
-        const limitedProducts = product.slice(0, limit);
-        res.json(limitedProducts);
-    } else{
-      res.json(product);
-    console.log(product);  
-    }
-});
+app.use('/', indexRouter);
+app.use('/api', produtsRouter);
 
-app.get('/products/:pid', async (req, res) => {
-  const {pid} = req.params;
-  const product = await productManager.getProductsById(pid);
-    if(product){
-     res.json(product);
-     console.log(product)
-    }else{
-      res.json({ error: 'Producto no encontrado'})
-    }
-  
-    
-});
-
-app.listen(8080, () => {
-    console.log('servidor http en el puerto 8080');
+app.listen(PORT, () => {
+    console.log(`servidor http corriendo en el puerto: ${PORT}`);
 });
